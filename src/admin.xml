@@ -1,0 +1,20 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<package name="admin" extends="struts-default" namespace="/">
+		<action name="queryAll" class="com.chinasofti.crm.admin.action.AdminAction" method="queryAll">
+				<result name="success">/administrator.jsp</result>
+		</action>
+		
+		<action name="delAdmin" class="com.chinasofti.crm.admin.action.AdminAction" method="delAdmin">
+		</action>
+		
+		<action name="addAdmin" class="com.chinasofti.crm.admin.action.AdminAction" method="addAdmin">
+		</action>
+		
+		<action name="updateAdmin" class="com.chinasofti.crm.admin.action.AdminAction" method="updateAdmin">
+		</action>
+	</package>
+</struts>

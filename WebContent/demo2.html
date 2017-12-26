@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>jquery实现table动态添加行、删除行以及行的上移和下移</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script type = "text/javascript" >
+        function moveUp(obj) {
+            var current = $(obj).parent().parent();
+            var prev = current.prev();
+            if (current.index() > 0) {
+                current.insertBefore(prev);
+
+                current_order = current.children(".ordertd").html();
+                prev_order = prev.children(".ordertd").html();
+                current.children(".ordertd").html(prev_order);
+                prev.children(".ordertd").html(current_order);
+
+            }
+        }
+
+    function moveDown(obj) {
+        var current = $(obj).parent().parent();
+        var next = current.next();
+        if (next) {
+            current.insertAfter(next);
+
+            current_order = current.children(".ordertd").html();
+            next_order = next.children(".ordertd").html();
+            current.children(".ordertd").html(next_order);
+            next.children(".ordertd").html(current_order);
+        }
+    }
+
+    function removeTr(obj) {
+        var current = $(obj).parent().parent();
+        var nextall = current.nextAll();
+        current.remove();
+
+
+        current_order = current.children(".ordertd").html();
+        $.each(nextall, function () {
+            $(this).children(".ordertd").html(current_order++);
+        });
+
+    }
+
+    function addTr() {
+
+        var datatr_counts = $(".datatbody").children("tr.datatr").length;
+        datatr_counts++;
+        //alert(datatr_counts);
+        var addtrhtml = '<tr class="datatr">\n' +
+            '    <td class="ordertd">' + datatr_counts + '</td> \n' +
+            '\t<td></td>  \n' +
+            '    <td><input type="text" name="textfield" class="editText" id="textfield"></td>  \n' +
+            '    <td> </td>  \n' +
+            '    <td><input type="text" name="textfield5" id="textfield5"></td>  \n' +
+            '    <td><input type="checkbox" name="checkbox" id="checkbox"></td>  \n' +
+            '    <td><input type="checkbox" name="checkbox5" id="checkbox5"></td>  \n' +
+            '    <td><a href="javascript:void(0)" onClick="moveUp(this)">上移</a>&nbsp;<a href="javascript:void(0)" onClick="moveDown(this)">下移</a>&nbsp;<a href="javascript:void(0)" onClick="removeTr(this)">删除</a></td>  \n' +
+            '  </tr> ';
+        $(".datatbody").append(addtrhtml);
+
+
+    }
+
+    </script>
+</head>
+<body>
+
+<button onclick="addTr();">添加行</button>
+<table class="grid" width="100%" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>排序</td>
+        <td>字段英文名</td>
+        <td>字段中文名</td>
+        <td>字段数据类型</td>
+        <td>列宽</td>
+        <td>是否显示</td>
+        <td>是否作为查询条件</td>
+        <td>调整顺序</td>
+    </tr>
+    <tbody class="datatbody">
+    <tr class="datatr">
+        <td class="ordertd">1</td>
+        <td>1</td>
+        <td><input type="text" name="textfield" class="editText" id="textfield"></td>
+        <td></td>
+        <td><input type="text" name="textfield5" id="textfield5"></td>
+        <td><input type="checkbox" name="checkbox" id="checkbox"></td>
+        <td><input type="checkbox" name="checkbox5" id="checkbox5"></td>
+        <td><a href="javascript:void(0)" onClick="moveUp(this)">上移</a>&nbsp;<a href="javascript:void(0)" onClick="moveDown(this)">下移</a>&nbsp;<a href="javascript:void(0)"
+                                                                                                                                                 onClick="removeTr(this)">删除</a></td>
+    </tr>
+    <tr class="datatr">
+        <td class="ordertd">2</td>
+        <td>2</td>
+        <td><input type="text" name="textfield2" id="textfield2"></td>
+        <td></td>
+        <td><input type="text" name="textfield6" id="textfield6"></td>
+        <td><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+        <td><input type="checkbox" name="checkbox6" id="checkbox6"></td>
+        <td><a href="javascript:void(0)" onClick="moveUp(this)">上移</a>&nbsp;<a href="javascript:void(0)" onClick="moveDown(this)">下移</a>&nbsp;<a href="javascript:void(0)"
+                                                                                                                                                 onClick="removeTr(this)">删除</a></td>
+    </tr>
+    <tr class="datatr">
+        <td class="ordertd">3</td>
+        <td>3</td>
+        <td><input type="text" name="textfield3" id="textfield3"></td>
+        <td></td>
+        <td><input type="text" name="textfield7" id="textfield7"></td>
+        <td><input type="checkbox" name="checkbox3" id="checkbox3"></td>
+        <td><input type="checkbox" name="checkbox7" id="checkbox7"></td>
+        <td><a href="javascript:void(0)" onClick="moveUp(this)">上移</a>&nbsp;<a href="javascript:void(0)" onClick="moveDown(this)">下移</a>&nbsp;<a href="javascript:void(0)"
+                                                                                                                                                 onClick="removeTr(this)">删除</a></td>
+    </tr>
+    <tr class="datatr">
+        <td class="ordertd">4</td>
+        <td>4</td>
+        <td><input type="text" name="textfield4" id="textfield4"></td>
+        <td></td>
+        <td><input type="text" name="textfield8" id="textfield8"></td>
+        <td><input type="checkbox" name="checkbox4" id="checkbox4"></td>
+        <td><input type="checkbox" name="checkbox8" id="checkbox8"></td>
+        <td><a href="javascript:void(0)" onClick="moveUp(this)">上移</a>&nbsp;<a href="javascript:void(0)" onClick="moveDown(this)">下移</a>&nbsp;<a href="javascript:void(0)"
+                                                                                                                                                 onClick="removeTr(this)">删除</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

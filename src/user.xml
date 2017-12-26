@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<package name="login" extends="struts-default" namespace="/">
+		<action name="loginAdministrator" class="com.chinasofti.crm.user.action.UserAction" method="loginAdministrator">
+			<result name="success">/administrator.jsp</result>
+				<result name="failed">/login.html</result>
+		</action>
+		
+		<action name="zhuceAdministrator" class="com.chinasofti.crm.user.action.UserAction" method="zhuceAdministrator">
+			<result name="success">/login.html</result>
+				<result name="failed">/zhuce.html</result>
+		</action>
+	</package>
+</struts>

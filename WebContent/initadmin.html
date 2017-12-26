@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script>
+		function initadmin(){
+			if(window.confirm("初始化会清空所有数据？")){
+				window.location.href="userAdminInit";
+			}else{
+				return;
+			}
+		}
+	
+	</script>
+</head>
+<body>
+	<button onclick="initadmin()">初始化系统管理员</button>
+</body>
+</html>
